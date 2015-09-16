@@ -1,20 +1,18 @@
 function obsGenerator(objectiveFunction)
 % Generate obstacles and shadow, and targets
-global staticObs targets
+global staticObs
 
 switch objectiveFunction
     case 'singleLuna'
         staticObs = [-30 -20 0 30; -30 30 0 20];
-        targets = [20;-20;1];
     case 'doubleLuna'
         staticObs = [-10 20 30; 0 -30 10];
-        targets = [-20 10;-30 30;1 3];
     case 'tripleLuna'
         staticObs = [-30 -10 -20 10; -10 -30 30 20];
-        targets = [-10 30 20;0 20 -20;1 2 3];
     case 'normalization'
         staticObs = [];
-        targets = [0;0;1];
+    case 'realLuna1'
+        staticObs = [-30 -20 0 30; -30 30 0 20];
     otherwise  
         disp('Matlab feels sorry being unable to generate obstacles for you!');
         return

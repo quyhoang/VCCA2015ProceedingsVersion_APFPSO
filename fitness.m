@@ -117,6 +117,35 @@ switch objectiveFunction
         for i = 1:noParticle
             sub(i) = sub1(i) + sub2(i) + sub3(i);
         end
+      
+    case 'realLuna1' % AVG_XL
+        C = 0:2.5:357.5; % C angle
+        gamma = 0:2.5:80; % gamma angle
+        h = 12.5;
+        load('data.mat');
+        v1 = b(1:33,:);
+        v2 = flipdim(v1,2);
+        v3 = [v1,v2(:,2:72)];
+        v = v3;
+        [a,b]= meshgrid(C,gamma);
+        
+        xC = a(:);
+        xC = xC';
+        
+        yGamma = b(:);
+        yGamma = yGamma';
+        
+        rr = h*tand(yGamma);
+        
+        yReal = rr.*sind(xC);
+        xReal = rr.*cosd(xC);
+        
+        value = v(:);
+        value = (value').*cosd(yGamma);
+        F = scatteredInterpolant(xReal',yReal',value');
+        for i = 1:noParticle
+            sub(i) = F(swarm(1,i),swarm(2,i));
+        end 
         
     otherwise
         disp('Invalid objectiveFunction!');
@@ -132,15 +161,4 @@ end
 % %             sub(i) = vv(xIndex,yIndex);
 %         end
 
-%     case 'luminaire1'
-%         %-----------------Single light source 1 at (0,0) -------------------------------------
-%         h = 10;
-%         S = [0;0;h];
-%         I = 5; % luminous intensity of isotropic source
-%         for i = 1:noParticle
-%             ptcle = [swarm(:,i);0];
-%             distance = r(ptcle,S);
-%             cosI = h/distance;
-%             sub(i) = I*cosI/distance^2; % flux
-%         end
  
