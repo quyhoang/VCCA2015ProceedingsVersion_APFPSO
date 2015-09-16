@@ -48,7 +48,7 @@ for boid1 = 1:s(2)
 %     for i = 1:s(2)
 %         r12 = r(swarm(:,boid1),anchor(:,i));
 %         
-% 				magnitude = 30/(r12-5)^2;
+% 				magnitude = 31/(r12-5)^2;
 %                 connect = swarm(:,boid1) - staticObs(:,obs);
 % 				vX = magnitude/r12*connect(1,1);
 % 				vY = magnitude/r12*connect(2,1);
@@ -75,3 +75,5 @@ end
 
 veloOutput = velo + vSeparation + vAttraction;
 end
+
+%This is just to make sure that Git does work.
