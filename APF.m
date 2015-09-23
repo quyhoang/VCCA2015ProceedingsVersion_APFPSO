@@ -17,13 +17,16 @@ r2 = 11*range;
 r3 = 16*range;
 G = 30;
 
+Fmax = 300;
+k = sqrt(Fmax)/rSeparation;
 % Update vSeparation
 for boid1 = 1:s(2)
     for boid2 = 1:s(2)
         if boid2 ~= boid1
             r12 = r(swarm(:,boid1),swarm(:,boid2));
             if r12 < rSeparation
-				magnitude = G/r12^2;
+% 				magnitude = G/r12^2;
+                magnitude = Fmax - k*r12^2;
 				connect = swarm(:,boid1) - swarm(:,boid2);
 				vX = magnitude/r12*connect(1,1);
 				vY = magnitude/r12*connect(2,1);

@@ -1,3 +1,6 @@
+% This m-file is served as a data construction for AVL_1XM_AM_DG source.
+% data.mat include matrix of intensity
+
 C = 0:2.5:357.5; % C angle
 gamma = 0:2.5:80; % gamma angle
 h = 12.5;
@@ -24,10 +27,10 @@ value = (value').*cosd(yGamma);
 
 d = -50:0.1:50;
 [xq,yq] = meshgrid(d,d);
-F = scatteredInterpolant(xReal',yReal',value');
+% F = scatteredInterpolant(xReal',yReal',value');
 
-% vq = griddata(xReal,yReal,value,xq,yq,'natural');
-% contourf(xq,yq,vq);
+vq = griddata(xReal,yReal,value,xq,yq,'natural');
+contourf(xq,yq,vq);
 
 % surf(xq,yq,vq);
 % shading interp

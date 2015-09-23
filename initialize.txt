@@ -1,5 +1,5 @@
-noParticle = 15
-maxStep = 6
+noParticle = 5
+maxStep = 100
 range = 1
 upLimit_1 = 50 
 dwLimit_1 = -50 
