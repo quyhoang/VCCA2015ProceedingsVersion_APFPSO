@@ -119,33 +119,40 @@ switch objectiveFunction
         end
       
     case 'realLuna1' % AVG_XL
-        C = 0:2.5:357.5; % C angle
-        gamma = 0:2.5:80; % gamma angle
-        h = 12.5;
-        load('data.mat');
-        v1 = b(1:33,:);
-        v2 = flipdim(v1,2);
-        v3 = [v1,v2(:,2:72)];
-        v = v3;
-        [a,b]= meshgrid(C,gamma);
-        
-        xC = a(:);
-        xC = xC';
-        
-        yGamma = b(:);
-        yGamma = yGamma';
-        
-        rr = h*tand(yGamma);
-        
-        yReal = rr.*sind(xC);
-        xReal = rr.*cosd(xC);
-        
-        value = v(:);
-        value = (value').*cosd(yGamma);
-        F = scatteredInterpolant(xReal',yReal',value');
+%         C = 0:2.5:357.5; % C angle
+%         gamma = 0:2.5:80; % gamma angle
+%         h = 12.5;
+%         load('data.mat');
+%         v1 = b(1:33,:);
+%         v2 = flipdim(v1,2);
+%         v3 = [v1,v2(:,2:72)];
+%         v = v3;
+%         [a,b]= meshgrid(C,gamma);
+%         
+%         xC = a(:);
+%         xC = xC';
+%         
+%         yGamma = b(:);
+%         yGamma = yGamma';
+%         
+%         rr = h*tand(yGamma);
+%         
+%         yReal = rr.*sind(xC);
+%         xReal = rr.*cosd(xC);
+%         
+%         value = v(:);
+%         value = (value').*cosd(yGamma);
+%         F = scatteredInterpolant(xReal',yReal',value');
+        load('getValueAVL1XMAMDG.mat');
         for i = 1:noParticle
             sub(i) = F(swarm(1,i),swarm(2,i));
         end 
+        
+    case 'realLuna2' % 875
+        load('getValue87517M56FG.mat');
+        for i = 1:noParticle
+            sub(i) = F(swarm(1,i),swarm(2,i));
+        end    
         
     otherwise
         disp('Invalid objectiveFunction!');

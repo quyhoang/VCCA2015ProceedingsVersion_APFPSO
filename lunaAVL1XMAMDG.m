@@ -26,11 +26,12 @@ value = v(:);
 value = (value').*cosd(yGamma);
 
 d = -50:0.1:50;
-[xq,yq] = meshgrid(d,d);
-% F = scatteredInterpolant(xReal',yReal',value');
+[xx,yy] = meshgrid(d,d);
+F = scatteredInterpolant(xReal',yReal',value');
+zz = griddata(xReal,yReal,value,xx,yy,'natural');
+save('getValueAVL1XMAMDG.mat','F','xx','yy','zz');
 
-vq = griddata(xReal,yReal,value,xq,yq,'natural');
-contourf(xq,yq,vq);
+% contourf(xq,yq,vq);
 
 % surf(xq,yq,vq);
 % shading interp

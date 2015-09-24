@@ -13,6 +13,8 @@ switch objectiveFunction
         staticObs = [];
     case 'realLuna1'
         staticObs = [-30 -20 0 30; -30 30 0 20];
+    case 'realLuna2'
+        staticObs = [-30 -10 -20 10; -10 -30 30 20];
     otherwise  
         disp('Matlab feels sorry being unable to generate obstacles for you!');
         return
