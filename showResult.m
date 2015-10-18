@@ -16,7 +16,7 @@ pause(1);
 % result = ['Best value is ',num2str(gBestVal),', found at (',num2str(gBest(1,1)),',',num2str(gBest(2,1)),')'];
 % disp(result);
 
-pause(10);
+pause();
 % clc; close all;
 % disp([num2str(gBest(1,1)),',',num2str(gBest(2,1))])
 end

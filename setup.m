@@ -37,7 +37,8 @@ spaceSize = up - dw;
 % swarm = dw + rand(2,noParticle).*spaceSize; % initial position --------
 
 if noParticle == 15
-    load('swarm.mat')
+%     load('swarm.mat')
+    load('swarm15.mat')
 elseif noParticle == 10
     load('swarm100.mat')
 elseif noParticle == 5
@@ -68,6 +69,6 @@ BestFitnessEver = zeros(1,maxStep);
 MeanFitnessEver = zeros(1,maxStep);
 
 fclose(k);
-obsGenerator(objectiveFunction);
+obsGenerator();
 
 end

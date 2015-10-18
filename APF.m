@@ -1,4 +1,4 @@
-function veloOutput = APF(swarm,velo,staticObs)
+function veloOutput = APF(swarm,velo,staticObs,additionalObs)
 
 global range 
 % step
@@ -11,6 +11,7 @@ vSeparation = z;
 vAttraction = z;
 neighbor = 0;
 a = size(staticObs);
+b = size(additionalObs);
 
 rSeparation = 6*range;
 r2 = 11*range;
@@ -35,13 +36,24 @@ for boid1 = 1:s(2)
         end
     end
     
-    % experimental: add random number to forces
+    
     for obs = 1:a(2)
         r12 = r(swarm(:,boid1),staticObs(:,obs));
         if r12 < rSeparation
                 m = rand;
 				magnitude = 30/(r12-5)^2;
                 connect = swarm(:,boid1) - staticObs(:,obs);
+				vX = magnitude/r12*connect(1,1);
+				vY = magnitude/r12*connect(2,1);
+                vSeparation(:,boid1) = vSeparation(:,boid1) + [vX;vY];
+        end
+    end
+    
+    for obs = 1:b(2)
+        r12 = r(swarm(:,boid1),additionalObs(:,obs));
+        if r12 < rSeparation
+                magnitude = 30/r12^2;
+                connect = swarm(:,boid1) - additionalObs(:,obs);
 				vX = magnitude/r12*connect(1,1);
 				vY = magnitude/r12*connect(2,1);
                 vSeparation(:,boid1) = vSeparation(:,boid1) + [vX;vY];

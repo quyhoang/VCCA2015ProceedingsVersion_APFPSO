@@ -1,7 +1,7 @@
 function updateVelo()
 % UPDATE VELOCITY //////////////////////////////////////////
 
-global step w c1 c2 swarm velo gBest pBest staticObs 
+global step w c1 c2 swarm velo gBest pBest staticObs additionalObs
 
 % % Conventional PSO velocity
 % velo = w(step)*velo + c1(step)*rand*(pBest-swarm) + c2(step)*rand*(gBest-swarm);
@@ -11,7 +11,7 @@ global step w c1 c2 swarm velo gBest pBest staticObs
 
 % APF PSO velocity
 k = 3;
-velo = w(step)*velo + c1(step)*rand*(pBest - swarm) + c2(step)*rand*(gBest - swarm) + k*APF(swarm,velo,staticObs);
+velo = w(step)*velo + c1(step)*rand*(pBest - swarm) + c2(step)*rand*(gBest - swarm) + k*APF(swarm,velo,staticObs,additionalObs);
 
 
 end
